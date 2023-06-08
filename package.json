@@ -3,16 +3,30 @@
 	"private": true,
 	"license": "MIT",
 	"type": "module",
+	"engines": {
+		"node": "18.x",
+		"npm": "9.x"
+	},
+	"packageManager": "npm@9.5.1",
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
 		"lint": "next lint",
-		"start": "next start"
+		"format:check": "prettier . \"!./content/**\" --cache --check --ignore-path ./.gitignore",
+		"format:fix": "npm run format:check -- --write",
+		"lint:check": "eslint . --cache --ignore-path ./.gitignore",
+		"lint:fix": "npm run lint:check -- --fix",
+		"prepare": "run-s setup",
+		"setup": "simple-git-hooks || exit 0",
+		"start": "next start",
+		"test": "exit 0",
+		"types:check": "tsc --noEmit",
+		"validate": "run-p format:check lint:check types:check test"
 	},
 	"dependencies": {
-		"next": "13.4.4",
-		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"next": "^13.4.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
 		"@acdh-oeaw/eslint-config": "^1.0.0",
@@ -26,17 +40,32 @@
 		"@next/mdx": "^13.4.4",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/mdx": "^2.0.5",
-		"@types/node": "20.2.5",
-		"@types/react": "18.2.8",
-		"@types/react-dom": "18.2.4",
-		"autoprefixer": "10.4.14",
-		"eslint": "8.42.0",
+		"@types/node": "^18.16.16",
+		"@types/react": "^18.2.9",
+		"@types/react-dom": "^18.2.4",
+		"autoprefixer": "^10.4.14",
+		"eslint": "^8.42.0",
 		"eslint-plugin-tailwindcss": "^3.12.1",
-		"postcss": "8.4.24",
+		"lint-staged": "^13.2.2",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.4.24",
 		"prettier": "^2.8.8",
 		"remark-gfm": "^3.0.1",
-		"tailwindcss": "3.3.2",
-		"typescript": "5.1.3"
+		"simple-git-hooks": "^2.8.1",
+		"tailwindcss": "^3.3.2",
+		"typescript": "^5.1.3"
+	},
+	"browserslist": {
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		],
+		"production": [
+			">=0.75%",
+			"not dead",
+			"not op_mini all"
+		]
 	},
 	"eslintConfig": {
 		"extends": [
@@ -56,11 +85,25 @@
 			}
 		]
 	},
+	"lint-staged": {
+		"*.@(js|ts|tsx)": [
+			"eslint --cache --fix",
+			"prettier --cache --write"
+		],
+		"*.@(css)": [
+			"stylelint --cache --fix",
+			"prettier --cache --write"
+		],
+		"*.!(css|js|ts|tsx),!./content/**": "prettier --cache --ignore-unknown --write"
+	},
 	"postcss": {
 		"plugins": {
 			"tailwindcss": {},
 			"autoprefixer": {}
 		}
 	},
-	"prettier": "@acdh-oeaw/prettier-config"
+	"prettier": "@acdh-oeaw/prettier-config",
+	"simple-git-hooks": {
+		"pre-commit": "npx lint-staged"
+	}
 }
