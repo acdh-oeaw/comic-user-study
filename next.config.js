@@ -1,17 +1,16 @@
-/** @typedef {import('next').NextConfig} NextConfig */
-
 import { log } from "@acdh-oeaw/lib";
 import createMdxPlugin from "@next/mdx";
+import createSvgPlugin from "@stefanprobst/next-svg";
 import withGfm from "remark-gfm";
 
-/** @type {NextConfig} */
+/** @type {import("next").NextConfig} */
 const config = {
 	eslint: {
 		dirs: [process.cwd()],
 		ignoreDuringBuilds: true,
 	},
 	async headers() {
-		/** @type {Awaited<ReturnType<NonNullable<NextConfig['headers']>>>} */
+		/** @type {Awaited<ReturnType<NonNullable<import("next").NextConfig['headers']>>>} */
 		const headers = [];
 
 		/**
@@ -49,6 +48,7 @@ const plugins = [
 			remarkPlugins: [withGfm],
 		},
 	}),
+	createSvgPlugin(),
 ];
 
 export default plugins.reduce((config, plugin) => {
