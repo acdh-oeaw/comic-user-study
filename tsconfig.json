@@ -12,7 +12,7 @@
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.config.js"],
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "out"],
 	"mdx": {
 		"plugins": ["remark-gfm"]
 	}
