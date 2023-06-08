@@ -1,5 +1,6 @@
 import "@fontsource-variable/inter/slnt.css";
 import "tailwindcss/tailwind.css";
+import "@/styles/index.css";
 
 import { type AppProps } from "next/app";
 

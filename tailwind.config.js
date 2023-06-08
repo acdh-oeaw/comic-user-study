@@ -1,4 +1,8 @@
 import typographyPlugin from "@tailwindcss/typography";
+import colors from "tailwindcss/colors";
+
+const neutral = colors.slate;
+const primary = colors.cyan;
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -6,6 +10,10 @@ const config = {
 	plugins: [typographyPlugin],
 	theme: {
 		extend: {
+			colors: {
+				neutral,
+				primary,
+			},
 			fontFamily: {
 				sans: ["Inter Variable", "system-ui", "sans-serif"],
 			},
