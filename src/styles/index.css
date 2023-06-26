@@ -7,7 +7,6 @@
 }
 
 :root {
-	overflow: hidden;
 	background-color: theme(colors.neutral.50);
 	color: theme(colors.neutral.800);
 	font-family: theme(fontFamily.sans);
@@ -23,7 +22,6 @@
 body,
 #__next {
 	block-size: 100%;
-	overflow: auto;
 }
 
 :focus {

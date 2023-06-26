@@ -5,6 +5,7 @@ import "@/styles/index.css";
 import { type AppProps } from "next/app";
 import { Fragment } from "react";
 
+import { Layout } from "@/components/Layout";
 import { AnalyticsScript } from "@/lib/analytics";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -17,7 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
 			<div className="relative grid min-h-full grid-rows-[auto_1fr_auto]">
 				<AppHeader />
-				<Component {...pageProps} />
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
 				<AppFooter />
 			</div>
 		</Fragment>

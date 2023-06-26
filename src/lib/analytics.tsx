@@ -12,8 +12,11 @@ declare global {
 function trackPageView(url: string): void {
 	window._paq?.push(["setCustomUrl", url]);
 	window._paq?.push(["trackPageView"]);
-	window._paq?.push(["trackVisibleContentImpressions", true, 500]);
-	window._paq?.push(["enableLinkTracking"]);
+}
+
+export function trackElementVisibility(id: string, visible: boolean): void {
+	if (visible) window._paq?.push(["trackEvent", "Enter Section", id]);
+	else window._paq?.push(["trackEvent", "Leave Section", id]);
 }
 
 function createAnalyticsScript(baseUrl: string, id: string): string {
@@ -57,7 +60,6 @@ export function AnalyticsScript(props: AnalyticsScriptProps) {
 			router.events.off("routeChangeComplete", trackPageView);
 		};
 	}, [router]);
-	console.log(baseUrl, id);
 	if (!isNonEmptyString(baseUrl) || !isNonEmptyString(id)) return null;
 
 	const script = createAnalyticsScript(baseUrl, id);
