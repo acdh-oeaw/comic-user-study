@@ -26,7 +26,7 @@ export function Layout(props: LayoutProps): JSX.Element {
 									<dd className="inline">
 										<ul className="inline text-xs font-bold uppercase tracking-wide text-brand-black">
 											<li className="inline">
-												<span>Datenmanagement</span>
+												<span>User Test</span>
 											</li>
 										</ul>
 									</dd>

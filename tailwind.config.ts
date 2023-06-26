@@ -43,7 +43,7 @@ const config: Config = {
 			ringOffsetWidth: {
 				DEFAULT: "2px",
 			},
-			typography(/** @type {(key: string) => string} */ theme) {
+			typography(/** @type {(key: string) => string} */ theme: (arg0: string) => any) {
 				return {
 					DEFAULT: {
 						css: {

@@ -51,7 +51,10 @@ export function SideNote(props: SideNoteProps): JSX.Element {
 	const title = props.title;
 
 	return (
-		<aside className={cx("border-l-4 px-6 py-6 my-6 space-y-3 rounded", styles[type])}>
+		<aside
+			className={cx("border-l-4 px-6 py-6 my-6 space-y-3 rounded", styles[type])}
+			data-content-piece
+		>
 			<strong className="flex items-center space-x-2 font-bold">
 				<Icon icon={icons[type]} className="shrink-0" />
 				<span>{title}</span>

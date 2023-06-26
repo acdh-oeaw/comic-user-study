@@ -12,9 +12,9 @@ export function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL("/howto/b", request.url));
 	}
 
-	return NextResponse.redirect(new URL("/howto/a", request.url));
+	return NextResponse.redirect(new URL("/howto/comic", request.url));
 }
 
 export const config = {
-	matcher: "/howto/:path*",
+	matcher: "/howto",
 };

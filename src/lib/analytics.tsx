@@ -12,6 +12,7 @@ declare global {
 function trackPageView(url: string): void {
 	window._paq?.push(["setCustomUrl", url]);
 	window._paq?.push(["trackPageView"]);
+	window._paq?.push(["trackVisibleContentImpressions", true, 500]);
 	window._paq?.push(["enableLinkTracking"]);
 }
 
@@ -32,6 +33,12 @@ function createAnalyticsScript(baseUrl: string, id: string): string {
     s.parentNode.insertBefore(g, s)
   })()`;
 }
+function createTagManagerScript(): string {
+	return `var _mtm = window._mtm = window._mtm || [];
+				_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+				g.async=true; g.src='https://cdn.matomo.cloud/dylen-user-study.matomo.cloud/container_F98Yaegt.js'; s.parentNode.insertBefore(g,s);`;
+}
 
 interface AnalyticsScriptProps {
 	baseUrl: string | undefined;
@@ -50,10 +57,14 @@ export function AnalyticsScript(props: AnalyticsScriptProps) {
 			router.events.off("routeChangeComplete", trackPageView);
 		};
 	}, [router]);
-
+	console.log(baseUrl, id);
 	if (!isNonEmptyString(baseUrl) || !isNonEmptyString(id)) return null;
 
 	const script = createAnalyticsScript(baseUrl, id);
 
 	return <Script dangerouslySetInnerHTML={{ __html: script }} id="analytics" />;
+}
+export function TagManagerScript() {
+	const script = createTagManagerScript();
+	return <Script dangerouslySetInnerHTML={{ __html: script }} id="tagManager" />;
 }

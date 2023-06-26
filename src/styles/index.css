@@ -23,6 +23,7 @@
 body,
 #__next {
 	block-size: 100%;
+	overflow: auto;
 }
 
 :focus {
