@@ -40,6 +40,13 @@ const config = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
+	webpack: (config) => {
+		config.module.rules.push({
+			test: /\.pdf$/i,
+			type: "asset/source",
+		});
+		return config;
+	},
 };
 
 const plugins = [

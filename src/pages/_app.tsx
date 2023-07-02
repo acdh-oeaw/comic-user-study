@@ -1,4 +1,5 @@
 import "@fontsource-variable/inter/slnt.css";
+import "@fontsource/amatic-sc";
 import "tailwindcss/tailwind.css";
 import "@/styles/index.css";
 

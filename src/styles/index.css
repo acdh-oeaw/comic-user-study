@@ -41,6 +41,24 @@ iframe {
 	scroll-margin-block-start: 2ex;
 }
 
+.svg-slide {
+	aspect-ratio: 16/9;
+}
+
+.react-pdf__Page {
+	background: none !important;
+}
+
+.react-pdf__Page__canvas {
+	width: 100% !important;
+	height: auto !important;
+	margin: auto;
+}
+
+.comic-container {
+	margin: 0 -20%;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

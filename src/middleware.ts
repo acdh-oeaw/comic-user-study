@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
 	// TODO:
 
 	if (Math.random() >= 0.5) {
-		return NextResponse.redirect(new URL("/howto/b", request.url));
+		return NextResponse.redirect(new URL("/howto/article", request.url));
 	}
 
 	return NextResponse.redirect(new URL("/howto/comic", request.url));

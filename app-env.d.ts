@@ -1,7 +1,7 @@
 /// <reference types="@stefanprobst/next-svg/types" />
 
 declare module "*.mdx" {
-	import { type ComponentType } from "react";
+	import { Component, type ComponentType } from "react";
 
 	const Component: ComponentType;
 	const metadata: Record<string, unknown>;
