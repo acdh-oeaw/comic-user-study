@@ -9,6 +9,7 @@ import { trackQuizAnswer } from "@/lib/analytics";
 export interface MultipleChoiceProps {
 	children?: ReactNode;
 	variant?: "multiple" | "single";
+	name: string;
 }
 
 /**
@@ -19,7 +20,6 @@ export function MultipleChoice(props: MultipleChoiceProps): JSX.Element {
 
 	const childElements = getChildElements(props.children);
 	const options = childElements.filter(isMultipleChoiceOption);
-
 	const correctAnswers = options
 		.filter((option) => {
 			return option.props.isCorrect === true;
@@ -49,13 +49,53 @@ export function MultipleChoice(props: MultipleChoiceProps): JSX.Element {
 		quiz.setStatus(QuizCardStatus.UNANSWERED);
 	}
 
+	function optionToString(option: any) {
+		console.log(option.props?.children);
+		console.log(option.props?.children?.props?.children);
+		return option.props?.children?.props?.children;
+	}
+
+	function onNext() {
+		const isCorrect =
+			correctAnswers.length === checked.size &&
+			correctAnswers.every((index) => {
+				return checked.has(index);
+			});
+		trackQuizAnswer(
+			"Navigate to next quiz answer",
+			props.name,
+			[...checked].map((i) => optionToString(options[i])).join(", "),
+			isCorrect,
+		);
+		quiz.next();
+	}
+	function onPrev() {
+		const isCorrect =
+			correctAnswers.length === checked.size &&
+			correctAnswers.every((index) => {
+				return checked.has(index);
+			});
+		trackQuizAnswer(
+			"Navigate to previous quiz answer",
+			props.name,
+			[...checked].map((i) => optionToString(options[i])).join(", "),
+			isCorrect,
+		);
+		quiz.previous();
+	}
+
 	function onValidate() {
 		const isCorrect =
 			correctAnswers.length === checked.size &&
 			correctAnswers.every((index) => {
 				return checked.has(index);
 			});
-		trackQuizAnswer("", "", isCorrect);
+		trackQuizAnswer(
+			"Validate quiz answer",
+			props.name,
+			[...checked].map((i) => optionToString(options[i])).join(", "),
+			isCorrect,
+		);
 		quiz.setStatus(isCorrect === true ? QuizCardStatus.CORRECT : QuizCardStatus.INCORRECT);
 	}
 
@@ -85,7 +125,7 @@ export function MultipleChoice(props: MultipleChoiceProps): JSX.Element {
 	);
 
 	return (
-		<QuizCardLayout component={component} onValidate={onValidate}>
+		<QuizCardLayout component={component} onValidate={onValidate} onNext={onNext} onPrev={onPrev}>
 			{props.children}
 		</QuizCardLayout>
 	);

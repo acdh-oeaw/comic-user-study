@@ -10,6 +10,8 @@ export interface QuizCardLayoutProps {
 	children?: ReactNode;
 	component?: JSX.Element;
 	onValidate: () => void;
+	onNext: () => void;
+	onPrev: () => void;
 }
 
 /**
@@ -24,7 +26,7 @@ export function QuizCardLayout(props: QuizCardLayoutProps): JSX.Element {
 		<div className="quiz-card flex flex-col space-y-8 rounded bg-white p-8 shadow-md">
 			{question}
 			{props.component}
-			<QuizControls onValidate={props.onValidate} />
+			<QuizControls onValidate={props.onValidate} onNext={props.onNext} onPrev={props.onPrev} />
 			<QuizMessages messages={messages} />
 		</div>
 	);

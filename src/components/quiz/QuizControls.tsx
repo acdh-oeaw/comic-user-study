@@ -5,6 +5,8 @@ import { QuizCardStatus, useQuiz } from "@/components/quiz/Quiz";
 
 export interface QuizControlsProps {
 	onValidate: () => void;
+	onNext: () => void;
+	onPrev: () => void;
 }
 
 /**
@@ -36,7 +38,7 @@ export function QuizControls(props: QuizControlsProps): JSX.Element {
 			{!isSingleQuestionQuiz ? (
 				<ActionButton
 					isDisabled={!quiz.hasPrevious}
-					onPress={quiz.previous}
+					onPress={props.onPrev}
 					variant={getButtonVariant(quiz.previousStatus)}
 				>
 					{quiz.labels.previous}
@@ -50,7 +52,7 @@ export function QuizControls(props: QuizControlsProps): JSX.Element {
 			{!isSingleQuestionQuiz ? (
 				<ActionButton
 					isDisabled={!quiz.hasNext}
-					onPress={quiz.next}
+					onPress={props.onNext}
 					variant={getButtonVariant(quiz.nextStatus)}
 				>
 					{quiz.labels.next}

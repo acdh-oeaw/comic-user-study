@@ -1,14 +1,13 @@
 import { type ReactElement, type ReactNode } from "react";
 import { useState } from "react";
 
-import { getChildElements } from "@/components/quiz/getChildElements";
 import { QuizCardStatus, useQuiz } from "@/components/quiz/Quiz";
 import { QuizCardLayout } from "@/components/quiz/QuizCardLayout";
 import { trackQuizAnswer } from "@/lib/analytics";
 
 export interface TextInputProps {
 	children?: ReactNode;
-	variant?: "multiple" | "single";
+	name: string;
 }
 
 /**
@@ -17,35 +16,32 @@ export interface TextInputProps {
 export function TextInput(props: TextInputProps): JSX.Element {
 	const quiz = useQuiz();
 
-	const childElements = getChildElements(props.children);
-	const options = childElements.filter(isTextInputOption);
-
-	const correctAnswers = options
-		.filter((option) => {
-			return option.props.isCorrect === true;
-		})
-		.map((option) => {
-			return options.indexOf(option);
-		});
-	/**
-	 * Put `Set` in a 1-tuple, so we don't need to recreate the `Set` on every change.
-	 */
-	const [[checked]] = useState<[Set<number>]>([new Set()]);
+	const [input, setInput] = useState("");
 
 	function onValidate() {
-		const isCorrect =
-			correctAnswers.length === checked.size &&
-			correctAnswers.every((index) => {
-				return checked.has(index);
-			});
-		trackQuizAnswer("", "", isCorrect);
-		quiz.setStatus(isCorrect === true ? QuizCardStatus.CORRECT : QuizCardStatus.INCORRECT);
+		trackQuizAnswer("Validate quiz answer", props.name, input, input.length > 0);
+		quiz.setStatus(input.length > 0 ? QuizCardStatus.CORRECT : QuizCardStatus.INCORRECT);
+	}
+	function onNext() {
+		trackQuizAnswer("Navigate to next quiz answer", props.name, input, input.length > 0);
+		quiz.next();
+	}
+	function onPrev() {
+		trackQuizAnswer("Navigate to previous quiz answer", props.name, input, input.length > 0);
+		quiz.previous();
 	}
 
-	const component = <input type="text" className="border-2" />;
+	const component = (
+		<input
+			type="text"
+			className="border-2"
+			value={input}
+			onInput={(e) => setInput(e.target.value)}
+		/>
+	);
 
 	return (
-		<QuizCardLayout component={component} onValidate={onValidate}>
+		<QuizCardLayout component={component} onValidate={onValidate} onNext={onNext} onPrev={onPrev}>
 			{props.children}
 		</QuizCardLayout>
 	);
