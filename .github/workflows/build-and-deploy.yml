@@ -20,6 +20,9 @@ jobs:
           cache: npm
 
       - name: Build
+        env:
+            NEXT_PUBLIC_MATOMO_BASE_URL: ${{ secrets.NEXT_PUBLIC_MATOMO_BASE_URL }}
+            NEXT_PUBLIC_MATOMO_ID: ${{ secrets.NEXT_PUBLIC_MATOMO_ID }}
         run: |
           npm ci
           npm run build
