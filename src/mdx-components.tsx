@@ -1,6 +1,6 @@
 import { type MDXComponents } from "mdx/types";
 
-import { DylenIntegration } from "@/components/dylen-integration";
+import { Iframe } from "@/components/Iframe";
 import { MatomoComponent } from "@/components/matomo-component";
 import { Quiz } from "@/components/quiz/Quiz";
 import { SideNote } from "@/components/side-note";
@@ -11,7 +11,7 @@ const shared = {
 	SvgElement,
 	MatomoComponent,
 	Quiz,
-	DylenIntegration,
+	Iframe,
 } as MDXComponents;
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

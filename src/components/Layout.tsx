@@ -1,16 +1,16 @@
-import { type ReactNode } from "react";
+import { createContext, type ReactNode, useState } from "react";
 import { Fragment } from "react";
 
 export interface LayoutProps {
 	children: ReactNode;
 }
-
+export const MainContentContext = createContext(null);
 /**
  * Default page layout.
  */
 export function Layout(props: LayoutProps): JSX.Element {
 	const { children } = props;
-
+	const [mainContent, setMainContent] = useState(null);
 	return (
 		<Fragment>
 			<div className="grid min-h-screen grid-rows-page-layout">
@@ -42,8 +42,10 @@ export function Layout(props: LayoutProps): JSX.Element {
 					</div>
 					<div className="mx-auto grid w-full max-w-screen-lg space-y-10 px-10 pb-16 pt-12 2xl:max-w-none 2xl:gap-x-10 2xl:space-y-0">
 						<div className="min-w-0">
-							<div className="mx-auto w-full max-w-80ch space-y-16">
-								<div className="prose prose-sm max-w-none sm:prose sm:max-w-none">{children}</div>
+							<div className="mx-auto w-full max-w-6xl space-y-16" ref={setMainContent}>
+								<MainContentContext.Provider value={mainContent}>
+									<div className="prose prose-sm max-w-none sm:prose sm:max-w-none">{children}</div>
+								</MainContentContext.Provider>
 							</div>
 						</div>
 					</div>

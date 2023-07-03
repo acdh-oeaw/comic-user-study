@@ -58,6 +58,7 @@ export function Quiz(props: QuizProps): JSX.Element | null {
 
 	const childElements = getChildElements(props.children);
 	const cards = childElements.filter(isQuizCard);
+	const nonCards = childElements.filter((c) => !isQuizCard(c));
 
 	const [cardsStatus, setCardsStatus] = useState<Array<QuizCardStatus>>(
 		Array(cards.length).fill(QuizCardStatus.UNANSWERED),
@@ -127,6 +128,8 @@ export function Quiz(props: QuizProps): JSX.Element | null {
 					</QuizContext.Provider>
 				);
 			})}
+
+			{nonCards}
 		</aside>
 	);
 }
