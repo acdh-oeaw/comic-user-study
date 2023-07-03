@@ -59,7 +59,7 @@ interface AnalyticsScriptProps {
 
 export function AnalyticsScript(props: AnalyticsScriptProps) {
 	const { baseUrl, id } = props;
-
+	console.log("Trying to create analytics script for props: ", props);
 	const router = useRouter();
 
 	useEffect(() => {
