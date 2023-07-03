@@ -45,13 +45,13 @@ function createAnalyticsScript(baseUrl: string, id: string): string {
     s.parentNode.insertBefore(g, s)
   })()`;
 }
-function createTagManagerScript(): string {
+/* function createTagManagerScript(): string {
 	return `var _mtm = window._mtm = window._mtm || [];
 				_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
 				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
 				g.async=true; g.src='https://cdn.matomo.cloud/dylen-user-study.matomo.cloud/container_F98Yaegt.js'; s.parentNode.insertBefore(g,s);`;
 }
-
+ */
 interface AnalyticsScriptProps {
 	baseUrl: string | undefined;
 	id: string | undefined;
@@ -75,7 +75,7 @@ export function AnalyticsScript(props: AnalyticsScriptProps) {
 
 	return <Script dangerouslySetInnerHTML={{ __html: script }} id="analytics" />;
 }
-export function TagManagerScript() {
+/* export function TagManagerScript() {
 	const script = createTagManagerScript();
 	return <Script dangerouslySetInnerHTML={{ __html: script }} id="tagManager" />;
-}
+} */
