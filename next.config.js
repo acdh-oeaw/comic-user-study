@@ -3,19 +3,6 @@ import createMdxPlugin from "@next/mdx";
 import createSvgPlugin from "@stefanprobst/next-svg";
 import withGfm from "remark-gfm";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
-let assetPrefix = "";
-let basePath = "/";
-
-if (isGithubActions) {
-	// trim off `<owner>/`
-	const repo = process.env.GITHUB_REPOSITORY?.replace(/.*?\//, "");
-
-	assetPrefix = `/${repo}/`;
-	basePath = `/${repo}`;
-}
-
 /** @type {import("next").NextConfig} */
 const config = {
 	eslint: {
@@ -53,8 +40,8 @@ const config = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
-	assetPrefix: assetPrefix,
-	basePath: basePath,
+	/* assetPrefix: assetPrefix,
+	basePath: basePath, */
 	webpack: (config) => {
 		config.module.rules.push({
 			test: /\.pdf$/i,
