@@ -26,14 +26,16 @@ export function Layout(props: LayoutProps): JSX.Element {
 									<dd className="inline">
 										<ul className="inline text-xs font-bold uppercase tracking-wide text-brand-black">
 											<li className="inline">
-												<span>User Test</span>
+												<span>
+													Collaboration in Practice: Data Comics in Learning Management Systems
+												</span>
 											</li>
 										</ul>
 									</dd>
 								</div>
 							</dl>
-							<h1 className="min-w-0 break-words text-5xl font-black tracking-tighter 2xs:text-6xl xs:text-7xl">
-								DYLEN
+							<h1 className="min-w-0 break-words text-5xl font-black tracking-tighter 2xs:text-5xl xs:text-5xl">
+								Comic User Study
 							</h1>
 							<dl className="grid min-w-0 grid-cols-2 items-center border-t border-neutral-200 py-4 text-sm font-medium text-neutral-100">
 								<div className="min-w-0 space-y-1"></div>
