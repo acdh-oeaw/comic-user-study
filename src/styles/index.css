@@ -61,6 +61,10 @@ iframe {
 	margin: 0 -20%;
 }
 
+*[data-sauto-id="bottom-info-bar"] {
+	display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

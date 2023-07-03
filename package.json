@@ -28,6 +28,7 @@
 		"@blunck/next-html": "^1.0.0",
 		"@datapunt/matomo-tracker-react": "^0.5.1",
 		"@mikecousins/react-pdf": "^6.1.1",
+		"@react-aria/button": "^3.8.0",
 		"@stefanprobst/next-svg": "^4.2.1",
 		"clsx": "^1.2.1",
 		"next": "13.4.4",
@@ -35,7 +36,8 @@
 		"react-dom": "18.2.0",
 		"react-intersection-observer": "^9.5.1",
 		"react-pdf": "^7.1.2",
-		"remark-gfm": "^3.0.1"
+		"remark-gfm": "^3.0.1",
+		"rosetta": "^1.1.0"
 	},
 	"devDependencies": {
 		"@acdh-oeaw/eslint-config": "^1.0.0",

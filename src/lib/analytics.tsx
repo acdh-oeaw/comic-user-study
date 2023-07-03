@@ -18,6 +18,15 @@ export function trackElementVisibility(id: string, visible: boolean): void {
 	if (visible) window._paq?.push(["trackEvent", "Enter Section", id]);
 	else window._paq?.push(["trackEvent", "Leave Section", id]);
 }
+export function trackQuizAnswer(question: string, answer: string, correct: boolean): void {
+	window._paq?.push([
+		"trackEvent",
+		"Answer question",
+		correct ? "correct answer" : "wrong answer",
+		question,
+		answer,
+	]);
+}
 
 function createAnalyticsScript(baseUrl: string, id: string): string {
 	return `
