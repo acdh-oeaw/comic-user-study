@@ -505,9 +505,15 @@ Series Analysis_ tab.
       <Quiz.Message type="incorrect">
         Sorry, the answer was incorrect.
       </Quiz.Message>
+
     </Quiz.MultipleChoice>
 
   </Quiz.Card>
+    	<Quiz.Card>
+    	<Quiz.MultipleChoice name="Knowledge - done">
+    		<Quiz.Question>Yay, you are done! Please move on to the tasks below.</Quiz.Question>
+    	</Quiz.MultipleChoice>
+    </Quiz.Card>
 </Quiz>
 
 ## Practical understanding and exercises
@@ -560,7 +566,11 @@ following tasks.
     </Quiz.TextInput>
 
   </Quiz.Card>
-
+	<Quiz.Card>
+		<Quiz.MultipleChoice name="tasks - done">
+			<Quiz.Question>Yay, you are done! You may now finish the experiment by clicking on the button below.</Quiz.Question>
+		</Quiz.MultipleChoice>
+	</Quiz.Card>
 </Quiz>
 
 <MatomoComponent id="links">
@@ -572,3 +582,5 @@ following tasks.
 [Dylen Tool](https://dylen-tool.acdh.oeaw.ac.at/)
 
 </MatomoComponent>
+
+<FinishButton></FinishButton>

@@ -1,5 +1,6 @@
 import { type MDXComponents } from "mdx/types";
 
+import { FinishButton } from "@/components/FinishButton";
 import { Iframe } from "@/components/Iframe";
 import { MatomoComponent } from "@/components/matomo-component";
 import { Quiz } from "@/components/quiz/Quiz";
@@ -14,6 +15,7 @@ const shared = {
 	Quiz,
 	Iframe,
 	StartButton,
+	FinishButton,
 } as MDXComponents;
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
